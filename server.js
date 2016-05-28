@@ -3,26 +3,29 @@ const path = require('path');
 const logger = require('morgan');
 
 
-const server = express();
+const app = express();
 const port = process.env.PORT || 8008;
 
 //view conf
-server.set('views', path.join(__dirname, 'views'));
-server.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 //logger
-server.use(logger('dev'));
+app.use(logger('dev'));
 
 //static path
-server.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+//load our routes
+require('./http/route')(app);
 
 // error handlers
 //=============================================
 // development error handler
 // will print stacktrace
 // export NODE_ENV=development for development
-if (server.get('env') === 'development') {
-  server.use((err, req, res, next) => {
+if (app.get('env') === 'development') {
+  app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.render('error/error', {
       message: err.message,
@@ -34,7 +37,7 @@ if (server.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 // export NODE_ENV=production for production
-server.use((err, req, res, next) => {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error/error', {
     message: err.message,
@@ -42,8 +45,8 @@ server.use((err, req, res, next) => {
   });
 });
 
-//create HTTP server
+//create HTTP app
 // launch =======================================
-server.listen(port);
+app.listen(port);
 console.log('The magic happens on port ' + port);
-console.log(server.get('env'));
+console.log(app.get('env'));
