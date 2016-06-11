@@ -9,3 +9,7 @@ module.exports.about = function(req, res) {
 module.exports.whatWeDo = function(req, res) {
 	res.render('index/what_we_do', {tagline: 'What We Do Page!'});
 }
+
+module.exports.Regist = function(req, res) {
+	res.render('index/regist', {tagline: 'Register Form!'});
+}

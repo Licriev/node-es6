@@ -1,0 +1,28 @@
+<style type="text/css">
+body {
+		background-color:#000000;
+		color: #444;
+	}
+
+h1 {
+		font-weight: bold;
+		text-align: center
+	}
+header { 
+		padding: 50px 10px;
+		color: #000000;
+		font-size: 15px;
+		text-align: left; 
+		}
+
+p{
+	font-family: sans-serif;
+	text-align: left;
+
+}
+
+	a:link { color:#FF0000; }
+	a:visited { color:#0B614B; }
+	a:hover { color:#B4045F; }
+	a:active { color:#00FF00;}
+</style>
